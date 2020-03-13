@@ -12,7 +12,10 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
     .then (response =>{
         //console.log(response);
         let allTabs = Tabs(response.data);
-        allTopics.append(allTabs);
+        
+            allTopics.append(allTabs);
+  
+        //allTopics.append(allTabs);
         // console.log('allTabs');
     })
     .catch(error =>{

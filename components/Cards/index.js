@@ -19,25 +19,42 @@
 // Create a card for each of the articles and add the card to the DOM.
 
 function getTheArticles(array){
-array.forEach(items =>{
     axios.get('https://lambda-times-backend.herokuapp.com/articles')
-    .then (response =>{
-        //console.log(response);
-        const articleArray = response.data.articles;
-        console.log(articleArray);
-        let allArticles = Tabs(response.data);
-        totalArticles.append(allArticles);
-        console.log('allTabs');
-    })
-    .catch(error =>{
-        console.log('Something is wrong!', error);
-    
-    })
-})
+    .then(response =>{
+        // let articleDoc = document.querySelector('.cards-container');
+        let articleArray = Object.keys(response.data.articles);
+        articleArray.forEach(items =>{
+            let newArray = Articles(items);
+                totalArticles.append(newArray);
+            })
+        })
 
-
+  
 }
+//getTheArticles('https://lambda-times-backend.herokuapp.com/articles');
+getTheArticles();
 
+
+    // axios.get('https://lambda-times-backend.herokuapp.com/articles')//articles
+    // .then (response =>{
+    //     //console.log(response);
+    //     let articleArray = Object.keys(response.data.articles);
+    //     //console.log(articleArray);
+    //     //let allArticles = newArray;
+
+    //     totalArticles.append(articleArray);
+    //     console.log('articleArray');
+    // })//closes
+    // .catch(error =>{
+    //     console.log('Something is wrong!', error);
+    
+//     })//closescatch
+// })//closesforeach
+
+
+// }//closes getArticles
+//getTheArticles();
+//here is my issue. don't know how to run the axios.get through the function for each
 
 // conver objects to array
 //Object.keys.data.articles;
@@ -65,9 +82,9 @@ function Articles(data){
     author.append(name);
 
     //textcontent
-    // headLine.textContent = data.content
-    // image.src = data.img
-    // author.textContent = `By: ${data.name}`;
+    headLine.textContent = data.headline;
+    image.src = data.authorPhoto;
+    author.textContent = `By: ${data.authorName}`;
 
 
 
