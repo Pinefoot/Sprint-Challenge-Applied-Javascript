@@ -21,11 +21,17 @@
 function getTheArticles(array){
     axios.get('https://lambda-times-backend.herokuapp.com/articles')
     .then(response =>{
-        // let articleDoc = document.querySelector('.cards-container');
-        let articleArray = Object.keys(response.data.articles);
-        articleArray.forEach(items =>{
-            let newArray = Articles(items);
-                totalArticles.append(newArray);
+console.log(response)
+       let articleArray = response.data.articles;
+        Object.keys(articleArray).forEach(items =>{
+
+            articleArray[items].forEach(element =>{
+                let newArray = Articles(element);
+                totalArticles.appendChild(newArray);
+            }) 
+            
+           
+                
             })
         })
 
@@ -74,12 +80,7 @@ function Articles(data){
     headLine.classList.add('headline');
     author.classList.add('author');
     imageContain.classList.add('img-container');
-    //appending
-    container.append(headLine);
-    container.append(author);
-    author.append(imageContain);
-    imageContain.append(image);
-    author.append(name);
+   
 
     //textcontent
     headLine.textContent = data.headline;
@@ -89,7 +90,12 @@ function Articles(data){
 
 
 
-
+ //appending
+ container.append(headLine);
+ container.append(author);
+ author.append(imageContain);
+ imageContain.append(image);
+ author.append(name);
 
 
 
@@ -98,5 +104,5 @@ function Articles(data){
 
 const totalArticles = document.querySelector('.cards-container');
     
-  totalArticles.append(Articles());
+  //totalArticles.append(Articles());
 
