@@ -10,7 +10,7 @@
 
 axios.get('https://lambda-times-backend.herokuapp.com/topics')
     .then (response =>{
-        console.log(response);
+        //console.log(response);
         let allTabs = Tabs(response.data);
         allTopics.append(allTabs);
         // console.log('allTabs');
@@ -27,12 +27,12 @@ function Tabs(data){
     //classes
     navContainer.classList.add('tab');
     //text content
-    navContainer.textContent = data.topics;
+    navContainer.textContent = `${data.topics}`;
     //appends
     
     //return it
     return navContainer;
 }
 const allTopics = document.querySelector('.topics');
-
+    
   allTopics.append(Tabs());
